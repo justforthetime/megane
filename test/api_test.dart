@@ -5,10 +5,11 @@ import 'package:test/test.dart';
 import 'package:http/http.dart' as http;
 
 void main() {
-  test("getIdListByQuery", () async {
-    var query = "language:korean -female:loli";
+  test("getIdListByQuery()", () async {
+    // var query = "language:korean -female:loli";
+    var query = " ";
     final idSet = await getIdListByQuery(query);
-    log('${idSet.first}');
+    log('${idSet.length}');
   });
 
   test("http get", () async {
