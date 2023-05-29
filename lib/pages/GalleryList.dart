@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:mymega/api/hitomi.dart';
 import 'package:mymega/pages/GalleryCard.dart';
 
 class GalleryList extends StatefulWidget {
