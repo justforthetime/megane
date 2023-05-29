@@ -26,12 +26,51 @@ class _GalleryCardState extends State<GalleryCard> {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           final gallery = snapshot.data!;
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [Text(gallery.title)],
-          );
+          return Padding(
+              padding: const EdgeInsets.all(10),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(width: 140, height: 210, color: Colors.amber),
+                  Container(width: 10),
+                  const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
+                  Flexible(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          gallery.title,
+                          style: const TextStyle(fontSize: 20),
+                          textAlign: TextAlign.left,
+                        ),
+                        Text(
+                          gallery.artist ?? "",
+                          style: const TextStyle(fontSize: 20),
+                          textAlign: TextAlign.left,
+                        ),
+                        Container(
+                          height: 10,
+                        ),
+                        Wrap(
+                          spacing: 8.0,
+                          runSpacing: 4.0,
+                          children: gallery.tags
+                              .map((tag) => Chip(
+                                    padding: const EdgeInsets.all(1.0),
+                                    label: Text(tag.name),
+                                  ))
+                              .toList(),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ));
         } else {
-          return const Text("loading");
+          return Container(
+            height: 210,
+            child: const Center(child: CircularProgressIndicator()),
+          );
         }
       },
     );

@@ -105,15 +105,15 @@ class Gallery {
   int id;
   String title;
   String thumbnail;
-  List<String> artists;
+  String? artist;
   List<String> series;
   String? type;
   Tag? language;
   List<Tag> characters;
   List<Tag> tags;
 
-  Gallery._create(this.id, this.title, this.thumbnail, this.artists,
-      this.series, this.type, this.language, this.tags, this.characters);
+  Gallery._create(this.id, this.title, this.thumbnail, this.artist, this.series,
+      this.type, this.language, this.tags, this.characters);
 
   static Future<Gallery> create(int id) async {
     if (galleryCache.containsKey(id)) {
@@ -134,6 +134,7 @@ class Gallery {
         .querySelectorAll(".artist-list li > a")
         .map((elem) => elem.text)
         .toList();
+    final artist = artists.firstOrNull;
 
     // TODO(jftt) parse thumbnail image
 
@@ -163,7 +164,7 @@ class Gallery {
     }).toList();
 
     var gallery = Gallery._create(
-        id, title, "", artists, series, type, language, tags, []);
+        id, title, "", artist, series, type, language, tags, []);
 
     galleryCache[id] = gallery;
     return gallery;
